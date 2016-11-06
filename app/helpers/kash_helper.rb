@@ -1,0 +1,2 @@
+module KashHelper
+end
