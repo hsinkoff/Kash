@@ -16,8 +16,8 @@ class Kash < ApplicationRecord
     request = Net::HTTP::Post.new(uri)
     
     request.set_form_data(
-      "x_account_id" => params[:x_account_id],
-      "x_amount" => params[:x_amount],
+      "x_account_id": params[:x_account_id],
+      "x_amount": params[:x_amount],
       "x_currency": params[:x_currency],
       "x_customer_first_name": params[:x_customer_first_name], 
       "x_customer_last_name": params[:x_customer_last_name],
@@ -30,9 +30,9 @@ class Kash < ApplicationRecord
       "x_customer_billing_zip": params[:x_customer_billing_zip],
       "x_customer_billing_country": params[:x_customer_billing_country],
       "x_test": true, 
-      "x_url_complete": "http://www.hoses-for-sale.tk",
-      "x_url_callback": "http://www.hoses-for-sale.tk",
-      "x_url_cancel": "http://www.hoses-for-sale.tk",
+      "x_url_complete": params[:x_url_complete],
+      "x_url_callback": params[:x_url_callback],
+      "x_url_cancel": params[:x_url_cancel],
       "x_signature": signature,
     )
   
@@ -42,9 +42,3 @@ class Kash < ApplicationRecord
     response.to_hash
   end
 end
-
-
-
-
-
-

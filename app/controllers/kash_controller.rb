@@ -4,6 +4,18 @@ class KashController < ApplicationController
     @response = Kash.post_to_kash(test_params, @signature)
   end
 
+  def complete
+    redirect_to root_path
+  end
+
+  def callback
+    redirect_to root_path
+  end
+
+  def cancel
+    redirect_to root_path
+  end
+
   private
 
   def test_params
@@ -22,9 +34,9 @@ class KashController < ApplicationController
       x_customer_billing_zip: "#####", 
       x_customer_billing_country: "USA", 
       x_test: true, 
-      x_url_complete: "http://www.mystore.com/transaction/complete",
-      x_url_callback: "http://www.mystore.com/transaction/callback",
-      x_url_cancel: "http://www.mystore.com/checkout"
+      x_url_complete: complete_path,
+      x_url_callback: callback_path,
+      x_url_cancel: cancel_path
     }
   end
   
