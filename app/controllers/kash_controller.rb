@@ -1,6 +1,6 @@
 class KashController < ApplicationController
   def index
-    @signature = Kash.compute_signature(test_params, "our kash server key")
+    @signature = Kash.compute_signature(test_params, ENV["kash_server_key"])
     @response = Kash.post_to_kash(test_params, @signature)
   end
 
@@ -20,7 +20,7 @@ class KashController < ApplicationController
 
   def test_params
     {
-      x_account_id: "ID", 
+      x_account_id: ENV["kash_account_id"], 
       x_amount: "10.00", 
       x_currency: "USD", 
       x_customer_first_name: "First", 

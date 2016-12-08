@@ -16,7 +16,7 @@ class Kash < ApplicationRecord
     request = Net::HTTP::Post.new(uri)
     
     request.set_form_data(
-      "x_account_id": params[:x_account_id],
+      "x_account_id": ENV["kash_account_id"],
       "x_amount": params[:x_amount],
       "x_currency": params[:x_currency],
       "x_customer_first_name": params[:x_customer_first_name], 

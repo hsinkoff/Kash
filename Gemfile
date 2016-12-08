@@ -50,3 +50,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 #openssl
 gem 'openssl'
 #Base64
+
+#figaro
+gem 'figaro'
