@@ -5,15 +5,15 @@ class KashController < ApplicationController
   end
 
   def complete
-    redirect_to root_path
+    
   end
 
   def callback
-    redirect_to root_path
+  
   end
 
   def cancel
-    redirect_to root_path
+    
   end
 
   private
