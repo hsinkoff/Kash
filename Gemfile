@@ -53,3 +53,6 @@ gem 'openssl'
 
 #figaro
 gem 'figaro'
+
+#for heroku
+gem 'rails_12factor', group: :production
