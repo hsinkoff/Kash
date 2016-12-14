@@ -14,11 +14,17 @@ class KashController < ApplicationController
   end
 
   def complete
-    
+    puts "COMPLETE"
+    puts "THE PARAMS ARE #{params.inspect}"
+    puts "PARAMS PARAMS PARAMS PARAMS PARAMS PARAMS"
+    puts "THE PARAMS ARE #{params.inspect}"
   end
 
   def callback
-  
+    puts "CALLBACK"
+    puts "THE PARAMS ARE #{params.inspect}"
+    puts "PARAMS PARAMS PARAMS PARAMS PARAMS PARAMS"
+    puts "THE PARAMS ARE #{params.inspect}"
   end
 
   def cancel
