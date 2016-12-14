@@ -39,6 +39,6 @@ class Kash < ApplicationRecord
     response = Net::HTTP.start(uri.hostname, uri.port, use_ssl: uri.scheme == "https") do |http|
       http.request(request)
     end
-    response.to_hash
+    response
   end
 end

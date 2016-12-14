@@ -2,6 +2,15 @@ class KashController < ApplicationController
   def index
     @signature = Kash.compute_signature(test_params, ENV["kash_server_key"])
     @response = Kash.post_to_kash(test_params, @signature)
+    # case @response
+    # when Net::HTTPSuccess then
+    #   @response
+    # when Net::HTTPRedirection then
+    #   location = @response['location']
+    #   redirect_to location
+    # else
+    #   @response
+    # end
   end
 
   def complete
@@ -25,13 +34,13 @@ class KashController < ApplicationController
       x_currency: "USD", 
       x_customer_first_name: "First", 
       x_customer_last_name: "Last", 
-      x_customer_phone: "1-555-555-5555", 
-      x_customer_email: "FirstLast@example.com", 
-      x_customer_billing_address1: "## XXXXXX St", 
-      x_customer_billing_address2: "Unit ###", 
-      x_customer_billing_city: "City", 
-      x_customer_billing_state: "XX", 
-      x_customer_billing_zip: "#####", 
+      x_customer_phone: "1-800-567-5309", 
+      x_customer_email: "FirstLast@thefirehoseproject.com", 
+      x_customer_billing_address1: "### S State St", 
+      x_customer_billing_address2: "Unit #", 
+      x_customer_billing_city: "Chicago", 
+      x_customer_billing_state: "IL", 
+      x_customer_billing_zip: "60605", 
       x_customer_billing_country: "USA", 
       x_test: true, 
       x_url_complete: complete_path,
