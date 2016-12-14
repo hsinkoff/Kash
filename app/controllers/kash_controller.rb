@@ -36,7 +36,7 @@ class KashController < ApplicationController
   def test_params
     {
       x_account_id: ENV["kash_account_id"], 
-      x_amount: "10.00", 
+      x_amount: "11.00", 
       x_currency: "USD", 
       x_customer_first_name: "First", 
       x_customer_last_name: "Last", 
