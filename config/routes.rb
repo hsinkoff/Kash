@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root 'kash#index'
-  get 'complete', to: 'kash#complete'
-  get 'callback', to: 'kash#callback'
-  get 'cancel', to: 'kash#cancel'
+  get 'complete/:id', to: 'kash#complete'
+  get 'callback/:id', to: 'kash#callback'
+  get 'cancel/:id', to: 'kash#cancel'
 end

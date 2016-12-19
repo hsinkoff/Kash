@@ -1,7 +1,8 @@
 class KashController < ApplicationController
   def index
-    @signature = Kash.compute_signature(test_params, ENV["kash_server_key"])
-    @response = Kash.post_to_kash(test_params, @signature)
+    data = test_data(SecureRandom.hex(16))
+    @signature = Kash.compute_signature(data, ENV["kash_server_key"])
+    @response = Kash.post_to_kash(data, @signature)
     # case @response
     # when Net::HTTPSuccess then
     #   @response
@@ -33,7 +34,7 @@ class KashController < ApplicationController
 
   private
 
-  def test_params
+  def test_data(id_number)
     {
       x_account_id: ENV["kash_account_id"], 
       x_amount: "11.00", 
@@ -42,16 +43,16 @@ class KashController < ApplicationController
       x_customer_last_name: "Last", 
       x_customer_phone: "1-800-567-5309", 
       x_customer_email: "First@thefirehoseproject.com", 
-      x_customer_billing_address1: "### S State St", 
-      x_customer_billing_address2: "Unit #", 
+      x_customer_billing_address1: "500 S State St", 
+      x_customer_billing_address2: "Unit 1", 
       x_customer_billing_city: "Chicago", 
       x_customer_billing_state: "IL", 
       x_customer_billing_zip: "60605", 
       x_customer_billing_country: "USA", 
       x_test: true, 
-      x_url_complete: complete_url,
-      x_url_callback: callback_url,
-      x_url_cancel: cancel_url
+      x_url_complete: "/complete/#{id_number}",
+      x_url_callback: "/callback/#{id_number}",
+      x_url_cancel: "/cancel/#{id_number}"
     }
   end
   
