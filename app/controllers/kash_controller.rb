@@ -15,11 +15,13 @@ class KashController < ApplicationController
   end
 
   def complete
+    render text: "complete", status: 200
     puts "COMPLETE"
     puts "THE PARAMS ARE #{params.inspect}"
   end
 
   def callback
+    render text: "callback", status: 200
     puts "CALLBACK"
     puts "THE PARAMS ARE #{params.inspect}"
   end
