@@ -25,7 +25,8 @@ class KashController < ApplicationController
   end
 
   def cancel
-    
+    puts "CANCEL"
+    puts "THE PARAMS ARE #{params.inspect}"
   end
 
   private
