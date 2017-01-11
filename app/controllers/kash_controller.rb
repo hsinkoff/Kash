@@ -46,7 +46,7 @@ class KashController < ApplicationController
       x_customer_billing_state: "IL", 
       x_customer_billing_zip: "60605", 
       x_customer_billing_country: "USA", 
-      x_test: true, 
+      x_test: "true", 
       x_url_complete: complete_url(id_number),
       x_url_callback: callback_url(id_number),
       x_url_cancel: cancel_url(id_number)

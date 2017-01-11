@@ -28,7 +28,7 @@ class Kash < ApplicationRecord
       "x_customer_billing_state": params[:x_customer_billing_state], 
       "x_customer_billing_zip": params[:x_customer_billing_zip],
       "x_customer_billing_country": params[:x_customer_billing_country],
-      "x_test": true, 
+      "x_test": "true", 
       "x_url_complete": params[:x_url_complete],
       "x_url_callback": params[:x_url_callback],
       "x_url_cancel": params[:x_url_cancel],
@@ -42,7 +42,7 @@ class Kash < ApplicationRecord
     puts uri.inspect
     puts data.inspect
     puts "\n\n\n\n\n\n"
-    
+
     response = Net::HTTP.start(uri.hostname, uri.port, use_ssl: uri.scheme == "https") do |http|
       http.request(request)
     end
