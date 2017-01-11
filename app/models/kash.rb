@@ -14,8 +14,7 @@ class Kash < ApplicationRecord
   def self.post_to_kash(params, signature)
     uri = URI.parse("https://gateway.withkash.com/")
     request = Net::HTTP::Post.new(uri)
-    
-    request.set_form_data(
+    data = {
       "x_account_id": ENV["kash_account_id"],
       "x_amount": params[:x_amount],
       "x_currency": params[:x_currency],
@@ -34,8 +33,16 @@ class Kash < ApplicationRecord
       "x_url_callback": params[:x_url_callback],
       "x_url_cancel": params[:x_url_cancel],
       "x_signature": signature,
-    )
-  
+    }
+
+    request.set_form_data(data)
+    
+    puts "\n\n\n\n\n\n"
+    puts "THIS IS THE DATA FOR THE HTTP CALL"
+    puts uri.inspect
+    puts data.inspect
+    puts "\n\n\n\n\n\n"
+    
     response = Net::HTTP.start(uri.hostname, uri.port, use_ssl: uri.scheme == "https") do |http|
       http.request(request)
     end

@@ -17,14 +17,10 @@ class KashController < ApplicationController
   def complete
     puts "COMPLETE"
     puts "THE PARAMS ARE #{params.inspect}"
-    puts "PARAMS PARAMS PARAMS PARAMS PARAMS PARAMS"
-    puts "THE PARAMS ARE #{params.inspect}"
   end
 
   def callback
     puts "CALLBACK"
-    puts "THE PARAMS ARE #{params.inspect}"
-    puts "PARAMS PARAMS PARAMS PARAMS PARAMS PARAMS"
     puts "THE PARAMS ARE #{params.inspect}"
   end
 
@@ -50,9 +46,9 @@ class KashController < ApplicationController
       x_customer_billing_zip: "60605", 
       x_customer_billing_country: "USA", 
       x_test: true, 
-      x_url_complete: "/complete/#{id_number}",
-      x_url_callback: "/callback/#{id_number}",
-      x_url_cancel: "/cancel/#{id_number}"
+      x_url_complete: complete_url(id_number),
+      x_url_callback: callback_url(id_number),
+      x_url_cancel: cancel_url(id_number)
     }
   end
   
