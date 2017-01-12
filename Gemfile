@@ -56,3 +56,9 @@ gem 'figaro'
 
 #for heroku
 gem 'rails_12factor', group: :production
+
+group :test do
+  # fakeweb
+  gem "fakeweb", "~>1.3"
+
+end

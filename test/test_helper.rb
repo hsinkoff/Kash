@@ -7,4 +7,5 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+  FakeWeb.register_uri(:post, "https://gateway.withkash.com/", body: "Kash FakeWeb", status: ["303", "See Other"], location: "redirect-route")
 end

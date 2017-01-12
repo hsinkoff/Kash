@@ -1,5 +1,12 @@
 class Kash < ApplicationRecord
 
+  def self.post_to_kash(params, server_key)
+    signature = self.compute_signature(params, server_key)
+    self.api_call(params, signature)
+  end
+
+  private
+
   def self.compute_signature(params, server_key)
     keys = params.keys.find_all {|a| a.match(/\Ax_/) }.sort!
     message = ''
@@ -11,9 +18,7 @@ class Kash < ApplicationRecord
     OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha256'), server_key, message)
   end
 
-  def self.post_to_kash(params, signature)
-    uri = URI.parse("https://gateway.withkash.com/")
-    request = Net::HTTP::Post.new(uri)
+  def self.api_call(params, signature)
     data = {
       "x_account_id": ENV["kash_account_id"],
       "x_amount": params[:x_amount],
@@ -34,7 +39,9 @@ class Kash < ApplicationRecord
       "x_url_cancel": params[:x_url_cancel],
       "x_signature": signature,
     }
-
+    
+    uri = URI.parse("https://gateway.withkash.com/")
+    request = Net::HTTP::Post.new(uri)
     request.set_form_data(data)
 
     response = Net::HTTP.start(uri.hostname, uri.port, use_ssl: uri.scheme == "https") do |http|

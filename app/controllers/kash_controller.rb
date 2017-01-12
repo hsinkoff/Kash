@@ -1,19 +1,19 @@
 class KashController < ApplicationController
   def index
-    signature = Kash.compute_signature(test_data, ENV["kash_server_key"])
-    response = Kash.post_to_kash(test_data, signature)
+    #signature = Kash.compute_signature(test_data, ENV["kash_server_key"])
+    response = Kash.post_to_kash(test_data, ENV["kash_server_key"])
     redirect_to response.to_hash["location"][0]
   end
 
   def complete
-    render text: "complete", status: 200
+    render plain: "complete", status: 200
     # complete tells user that all is good
     # students only see complete if we've already responded with a 200 to the callback
     # this should show the equivalent of the receipt page
   end
 
   def callback
-    render text: "callback", status: 200 
+    render plain: "callback", status: 200 
     # place in transaction
     # tells you everything is good on their end
     #(when we get callback mark them as paid)
