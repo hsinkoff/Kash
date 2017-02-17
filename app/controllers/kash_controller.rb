@@ -1,28 +1,27 @@
 class KashController < ApplicationController
   def index
     response = Kash.post_to_kash(test_data, server_key)
-    # Server key should be kept secure.  Do not put the actual server_key in this file.
     redirect_to response.to_hash["location"][0]
   end
 
   def complete
-    render plain: "complete", status: 200
-    # complete tells user that all is good
-    # users only see complete if we've already responded with a 200 to the callback
+    # Kash will redirect the user to this action once everything is complete on their end.
+    # A user arriving at complete indicates the payment is complete.
+    # A user only goes through this action if Kash receives a 200 response from the callback action.
   end
 
   def callback
+    # Kash will make an api call to the callback action once they have okayed the payment.
+    # Kash will not complete the processing of the payment until they receive a 200 response from callback.
+    # It might make sense to consider using a transaction for the code in this action.
     render plain: "callback", status: 200 
-    # place everything we need completed in a transaction
-    # tells us everything is good on their (Kash's) end
-    # make sure to return valid http response (200) to ensure we are paid
-    # once we return valid 200 response, users see complete and we'll be paid
   end
 
   def cancel
-    # users see this if we don't respond with 200 to the callback or if
-    # Kash does not approve them before that point in time
-    # this view should indicate a problem occurred and no payment was made
+    # Kash will redirect the user to this action if they are not approved by Kash.
+    # Kash will redirect the user to this action if Kash does not receive a 200 response from the callback action.
+    # Kash will redirect the user to this action if the user clicks cancel.
+    # If a user arrives here, a payment was not made.
   end
 
   private
@@ -35,7 +34,7 @@ class KashController < ApplicationController
       x_customer_first_name: "Second", 
       x_customer_last_name: "Last", 
       x_customer_phone: "1-800-567-5309", 
-      x_customer_email: "First@thefirehoseproject.com", 
+      x_customer_email: "email@example.com", 
       x_customer_billing_address1: "500 South Blvd", 
       x_customer_billing_address2: "Unit 1", 
       x_customer_billing_city: "City", 
