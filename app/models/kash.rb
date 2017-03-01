@@ -33,6 +33,7 @@ class Kash < ApplicationRecord
       "x_customer_billing_state": params[:x_customer_billing_state], 
       "x_customer_billing_zip": params[:x_customer_billing_zip],
       "x_customer_billing_country": params[:x_customer_billing_country],
+      "x_reference": params[:x_reference],
       "x_test": Rails.env.production? ? "false": "true", 
       "x_url_complete": params[:x_url_complete],
       "x_url_callback": params[:x_url_callback],

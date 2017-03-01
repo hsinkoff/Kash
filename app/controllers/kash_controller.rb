@@ -41,6 +41,7 @@ class KashController < ApplicationController
       x_customer_billing_state: "CA", 
       x_customer_billing_zip: "12345", 
       x_customer_billing_country: "USA", 
+      x_reference: '1',
       x_test: Rails.env.production? ? "false": "true", 
       x_url_complete: complete_url,
       x_url_callback: callback_url,
